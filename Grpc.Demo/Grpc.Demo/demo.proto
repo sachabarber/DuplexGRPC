@@ -1,0 +1,29 @@
+﻿syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.demo";
+option java_outer_classname = "DemoProto";
+option objc_class_prefix = "DMO";
+
+import "google/protobuf/empty.proto";
+
+package demos;
+
+service PubSub {
+	rpc GetAnEvent(google.protobuf.Empty) returns (Event) {}
+	rpc Subscribe(Subscription) returns (stream Event) {}
+	rpc Unsubscribe(Subscription) returns (Unsubscription) {}
+}
+
+message Event
+{
+	string Value = 1;
+}
+message Subscription
+{
+	string Id = 1;
+}
+message Unsubscription
+{
+	string Id = 1;
+}
